@@ -1,5 +1,226 @@
-*, *::before *::after {
+:root {
+    --primary-color: hsl(289, 21%, 30%);
+    --secondary-color: hsl(289, 21%, 20%);
+    --card-primary: hsla(289, 22%, 50%, 70%);
+    --card-border: hsla(289, 22%, 40%, 70%);
+    --secondary-hover: hsl(289, 21%, 10%);
+    --secondary-active: hsl(289, 21%, 15%);
+    --font-color: #DCDCDC;
+    --secondary-font-color: hsl(289, 21%, 10%);
+    --read: rgba(30, 240, 30, 0.7);
+    --read-border: rgba(0, 220, 0, 0.7);
+    --unread: rgba(240, 30, 30, 0.7);
+    --unread-border: rgba(220, 0, 0, 0.7);
+    --dropdown-primary: var(--ellipsis-primary);
+    --dropdown-border: var(--ellipsis-border);
+    --dropdown-hover: var(--ellipsis-hover);
+    --dropdown-active: var(--ellipsis-active);
+    --ellipsis-primary: hsla(289, 10%, 55%, 70%);
+    --ellipsis-border:  hsla(289, 10%, 30%, 70%);
+    --ellipsis-hover:  hsla(289, 10%, 30%, 70%);
+    --ellipsis-active:  hsla(289, 10%, 20%, 70%);
+
+}
+
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: inherit;
+    color: inherit;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    height: 100dvh;
+    display: grid;
+    grid-template-rows: 1fr 6fr;
+    font-size: 1rem;
+    color: var(--font-color);
+}
+
+button, input, label {
+    outline: none;
+    border: none;
+}
+
+
+header {
+    width: 100dvw;
+    height: 4rem;
+    grid-row: 1 / 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    padding-right: 4rem;
+    margin-bottom: 2rem;
+    background-color: var(--primary-color);
+    color: var(--font-color);
+}
+
+#title {
+    font-size: 1.75rem;
+}
+
+#add-book-btn {
+    background-color: var(--secondary-color);
+    padding: 0.5rem 0.75rem;
+    transition: background-color .1s;
+    font-size: 1rem;
+}
+
+#add-book-btn:hover {
+    background-color: var(--secondary-hover);
+    transition: background-color 0s;
+}
+
+#add-book-btn:active {
+    background-color: var(--secondary-active);
+}
+
+main {
+    grid-row: 2 / -1;
+    padding: 0 2rem;
+    color: var(--font-color)
+}
+
+#card-container {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-auto-rows: 350px;
+    gap: 2rem;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: grid;
+    grid-template-rows: 1fr 1fr 5fr 1fr;
+    align-items: center;
+    gap: .75rem;
+    padding: 1rem;
+    background-color: var(--card-primary);
+    border: 3px solid var(--card-border);
+    border-radius: 10px;
+    color: var(--secondary-font-color)
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+}
+
+.book-title {
+    font-size: 1.5rem;
+    margin: auto;
+}
+
+.options {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.options-dropdown, .options-dropdown::before {
+    display: none;
+    position: absolute;
+    left: calc(100% - 20px);
+    top: 100%;
+    background-color: var(--ellipsis-primary);
+    border: 1.5px solid var(--dropdown-border);
+    border-top: none;
+}
+
+.options-dropdown li {
+    list-style-type: none;
+    background-color: var(--dropdown-primary);
+    width: 6rem;
+    font-size: .85rem;
+}
+
+.options-dropdown :nth-child(odd) {
+    /* border-bottom: 1.5px solid var(--dropdown-border); */
+}
+
+.options-dropdown::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 17px;
+    width: calc(100% - 17px);
+    height: 0px;
+}
+
+.options-dropdown li:hover {
+    background-color: var(--dropdown-hover);
+}
+
+.options-dropdown li:active {
+    background-color: var(--dropdown-active);
+}
+
+.options-dropdown.active, .options-dropdown.active::before {
+    display: block;
+
+}
+
+.ellipsis {
+    left: calc(100% - 40px);
+    height: 20px;
+    aspect-ratio: 1 / 1;
+    background-color: var(--ellipsis-primary);
+    border: 1.5px solid var(--ellipsis-border);
+    border-radius: 1000px;
+}
+.ellipsis:has(+ .options-dropdown.active) {
+    border-radius: 0px;
+    border-bottom: none;
+    /* border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px; */
+}
+
+.ellipsis:hover {
+    background-color: var(--ellipsis-hover);
+}
+
+.ellipsis:active {
+    background-color: var(--ellipsis-active);
+}
+
+.book-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    min-height: 0;
+    border: 2px solid var(--card-border);
+    border-radius: 5px;
+    object-fit: fill;
+}
+
+.additional-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.status {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 1000px;
+}
+
+.status.read { 
+    background-color: var(--read);
+    border: 1.5px solid var(--read-border);
+}
+
+.status.unread { 
+    background-color: var(--unread);
+    border: 1.5px solid var(--unread-border);
 }
