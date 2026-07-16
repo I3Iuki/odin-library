@@ -11,32 +11,14 @@
     <body>
         <header>
             <h1 id="title">MyLibrary</h1>
-            <button class="button" id="add-book-btn">+ Add Book</button>
+            <button class="button" id="add-book-btn"><img src="assets/add.svg" alt="" class="svg"> Add Book</button>
         </header>
 
         <main>
-            <div id="card-container">
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="book-title">Jewels</h2>
-                        <div class="options">
-                            <img src="./assets/ellipsis.svg" alt="" class="ellipsis">
-                            <ul class="options-dropdown active">
-                                <li class="change-status">Change read status</li>
-                                <li class="delete">Delete</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <p class="author"><b>Author:</b> Danielle Steel</p>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT43K1fHKj7DUzHKageMmuwG0VEG_JxWft1i_AxwGjpqQ&s=10" alt="cover img" class="book-cover">
-                    <div class="additional-info">
-                        <p class="page-count"><b># of Pages:</b> 234</p>
-                        <p class="status unread">Read</p>
-                    </div>
-                </div>
+
                 
             </div>
-            <dialog id="book-form">
+            <dialog id="book-form" open>
                 <form id="book-form">
                     <label for="title"></label>
                     <input type="text" id="title">
