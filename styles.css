@@ -7,10 +7,18 @@
     --secondary-active: hsl(289, 21%, 15%);
     --font-color: #DCDCDC;
     --secondary-font-color: hsl(289, 21%, 10%);
-    --read: rgba(30, 240, 30, 0.7);
-    --read-border: rgba(0, 220, 0, 0.7);
-    --unread: rgba(240, 30, 30, 0.7);
-    --unread-border: rgba(220, 0, 0, 0.7);
+    --form-primary: hsla(289, 22%, 50%, 30%);
+    --form-border: hsla(289, 22%, 50%, 30%);
+    --input-primary: hsla(289, 10%, 65%, 70%);
+    --input-border:  hsla(289, 10%, 40%, 70%);
+    --positive: rgba(30, 240, 30, 0.55);
+    --positive-hover: rgba(0, 220, 0, 0.55);
+    --positive-active: rgba(30, 220, 30, 0.55);
+    --positive-border: rgba(0, 220, 0, 0.7);
+    --negative : rgba(240, 30, 30, 0.55);
+    --negative -hover: rgba(220, 0, 0, 0.55);
+    --negative -active: rgba(220, 30, 30, 0.55);
+    --negative -border: rgba(220, 0, 0, .7);
     --dropdown-primary: var(--ellipsis-primary);
     --dropdown-border: var(--ellipsis-border);
     --dropdown-hover: var(--ellipsis-hover);
@@ -45,6 +53,7 @@ body {
 button, input, label {
     outline: none;
     border: none;
+    font-size: .85rem;
 }
 
 .svg {
@@ -95,6 +104,99 @@ main {
     grid-row: 2 / -1;
     padding: 0 2rem;
     color: var(--font-color)
+}
+
+dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.close {
+    background: none;
+    position: absolute;
+    right: 1rem;
+}
+
+form {
+    color: var(--secondary-font-color);    
+    background-color: var(--form-primary);
+    padding: 1rem;
+    border: 3px solid var(--form-border);
+}
+
+form h3 {
+    margin: 0 auto;
+    font-size: 1.25rem;
+}
+
+#book-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 400px;
+    height: 300px;
+}
+
+#deletion-confirmation-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+#deletion-confirmation-form div {
+    display: flex;
+    justify-content: space-around;
+    gap: 1rem;
+    width: 60%;
+}
+
+
+#deletion-confirmation-form h3 {
+    font-size: 1.5rem;
+}
+
+#deletion-confirmation-form p {
+    font-size: 1rem;
+}
+
+#deletion-confirmation-form div button {
+    width: 130px;
+    height: 40px;
+    border-radius: 1000px;
+}
+
+#cancel {
+    background-color: var(--positive);
+    border: 2px solid var(--positive-border);
+}
+
+#cancel:hover {
+    background-color: var(--positive-hover);
+}
+
+#cancel:active {
+    background: var(--positive-active);
+}
+
+#confirm {
+    background-color: var(--negative   );
+    border: 2px solid var(--negative   -border);
+}
+
+#confirm:hover {
+    background-color: var(--negative   -hover);
+}
+
+#confirm:active {
+    background: var(--negative -active);
+}
+
+#book-form input {
+    background-color: var(--input-primary);
+    border: 2px solid var(--input-border);
 }
 
 #card-container {
@@ -228,11 +330,11 @@ main {
 }
 
 .status.read { 
-    background-color: var(--read);
-    border: 1.5px solid var(--read-border);
+    background-color: var(--positive);
+    border: 1.5px solid var(--positive-border);
 }
 
 .status.unread { 
-    background-color: var(--unread);
-    border: 1.5px solid var(--unread-border);
+    background-color: var(--negative   );
+    border: 1.5px solid var(--negative -border);
 }

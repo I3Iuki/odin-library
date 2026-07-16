@@ -18,27 +18,48 @@
 
                 
             </div>
-            <dialog id="book-form" open>
-                <form id="book-form">
-                    <label for="title"></label>
-                    <input type="text" id="title">
+            <dialog id="book-addition-popup" open>
+                <form id="book-addition-form">
+                    <button class="close"><img src="./assets/close-x.svg" class="svg close-x"></button>
+                    <h3>Add Book</h3>
+
+                    <div>
+                        <label for="title-input">Title</label>
+                        <input type="text" id="title-input">
+                    </div>
                     
-                    <label for="title"></label>
-                    <input type="text" id="title">
+                    <div>
+                        <label for="author-input">Author</label>
+                        <input type="text" id="author-input" required>
+                    </div>
     
-                    <label for="title"></label>
-                    <input type="text" id="title">
+                    <div>
+                        <label for="cover-input">Cover Image</label>
+                        <input type="file" id="cover-input">
+                    </div>
     
-                    <label for="title"></label>
-                    <input type="text" id="title">
+                    <div>
+                        <label for="page-input">Page Count</label>
+                        <input type="number" id="page-input">
+                    </div>
     
-                    <label for="title"></label>
-                    <input type="text" id="title">
-    
+                    <div>
+                        <label for="status-input">Have you finished this book?</label>
+                        <input type="checkbox" id="status-input">
+                    </div>
+                    <button type="submit">Add Book</button>
                 </form>
             </dialog>
-            <dialog class="deletion-confirmation">
-
+            <dialog id="deletion-confirmation-popup" >
+                <form id="deletion-confirmation-form">
+                    <button class="close"><img src="./assets/close-x.svg" class="svg close-x"></button>
+                    <h3>Deletion Confirmation</h3>
+                    <p>You cannot undo this.</p>
+                    <div>
+                        <button type="button" id="cancel">Cancel</button>
+                        <button type="submit" id="confirm">Yes, Delete</button>
+                    </div>
+                </form>
             </dialog>
         </main>
 
