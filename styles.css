@@ -234,12 +234,13 @@ form h3 {
 }
 
 .options {
+    display: none;
     position: relative;
     display: flex;
     align-items: center;
 }
 
-.options-dropdown, .options-dropdown::before {
+.options-dropdown {
     display: none;
     position: absolute;
     left: calc(100% - 20px);
@@ -262,18 +263,19 @@ form h3 {
     font-size: .85rem;
 }
 
-.options-dropdown > :nth-child(odd) > :first-child{
-    border-bottom: 1.5px solid var(--dropdown-border);
+.options-dropdown > li{
+    border-top: 1.5px solid var(--dropdown-border);
 }
 
-.options-dropdown::before {
+/* .options-dropdown::before {
     content: '';
     position: absolute;
     top: -1px;
     left: 17.5px;
     width: calc(100% - 16px);
     height: 0px;
-}
+    border-bottom: 1.5px solid var(--dropdown-border);
+} */
 
 .options-dropdown li button:hover {
     background-color: var(--dropdown-hover);
@@ -283,7 +285,7 @@ form h3 {
     background-color: var(--dropdown-active);
 }
 
-.options-dropdown.active, .options-dropdown.active::before {
+.active, .active::before, .active::after{
     display: block;
 
 }
@@ -295,6 +297,7 @@ form h3 {
     background-color: var(--ellipsis-primary);
     border: 1.5px solid var(--ellipsis-border);
     border-radius: 1000px;
+    border-bottom: none;
 }
 .ellipsis:has(+ .options-dropdown.active) {
     border-radius: 0px;
