@@ -117,6 +117,7 @@ dialog {
     background: none;
     position: absolute;
     right: 1rem;
+
 }
 
 form {
@@ -127,16 +128,26 @@ form {
 }
 
 form h3 {
+    position: relative;
     margin: 0 auto;
     font-size: 1.25rem;
 }
 
-#book-form {
+#book-addition-form {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: .25rem;
     width: 400px;
-    height: 300px;
+    height: min-content;
+}
+
+#book-addition-form > * {
+    display: block;
+}
+
+#book-addition-form button[type="submit"] {
+    width: 50%;
+    margin: 0 auto;
 }
 
 #deletion-confirmation-form {
@@ -249,6 +260,7 @@ form h3 {
     border: 1.5px solid var(--dropdown-border);
     border-top: none;
     list-style: none;
+    z-index: 9999;
 }
 
 .options-dropdown li button {
@@ -267,21 +279,11 @@ form h3 {
     border-top: 1.5px solid var(--dropdown-border);
 }
 
-/* .options-dropdown::before {
-    content: '';
-    position: absolute;
-    top: -1px;
-    left: 17.5px;
-    width: calc(100% - 16px);
-    height: 0px;
-    border-bottom: 1.5px solid var(--dropdown-border);
-} */
-
-.options-dropdown li button:hover {
+.options-dropdown li button:hover:not(.id) {
     background-color: var(--dropdown-hover);
 }
 
-.options-dropdown li button:active {
+.options-dropdown li button:active:not(.id) {
     background-color: var(--dropdown-active);
 }
 
@@ -330,14 +332,11 @@ form h3 {
     font-size: 0.85rem;
     padding: 0.25rem 0.5rem;
     border-radius: 1000px;
-}
-
-.status.read { 
     background-color: var(--positive);
     border: 1.5px solid var(--positive-border);
 }
 
 .status.unread { 
-    background-color: var(--negative   );
-    border: 1.5px solid var(--negative -border);
+    background-color: var(--negative);
+    border: 1.5px solid var(--negative-border);
 }
