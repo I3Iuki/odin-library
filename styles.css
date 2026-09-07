@@ -334,9 +334,11 @@ form h3 {
     border-radius: 1000px;
     background-color: var(--positive);
     border: 1.5px solid var(--positive-border);
+    content: "Read";
 }
 
 .status.unread { 
     background-color: var(--negative);
     border: 1.5px solid var(--negative-border);
+    content: "Unread";
 }
