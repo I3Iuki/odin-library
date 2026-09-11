@@ -30,6 +30,7 @@ class Book {
         this.coverLink = coverLink;
         this.pageCount = pageCount? pageCount : "N/A";
         this.isRead = readStatus? readStatus : false;
+        this.id = crypto.randomUUID();
     }
 
     static createCard(book) {
@@ -54,9 +55,9 @@ class Book {
         </div>
         `;
 
-        dropdowns = document.querySelectorAll(".options-dropdown");
-
         container.insertAdjacentHTML('beforeend', html);
+
+        dropdowns = document.querySelectorAll(".options-dropdown");
     }
 
     static addBook() {
@@ -67,9 +68,18 @@ class Book {
         this.#library.push(book);
     }
 
-    static removeBook(dom) {
-        this.#library.pop(this.#library.findIndex(book => book.id === dom.id))
-        dom.remove();
+    static removeBook() {
+        this.#library.pop(this.#library.findIndex(book => book.id === this.#pendingDeletion.id))
+        this.#pendingDeletion.remove();
+    }
+
+    static promptRemoval(dom) {
+        deletionConfirmationDialog.showModal();
+        this.#pendingDeletion = dom;
+    }
+
+    static clearDeletionQueue() {
+        this.#pendingDeletion = null;
     }
 }
 
@@ -89,12 +99,11 @@ container.addEventListener('click', (e) => {
 
         indicator.classList.toggle("unread");
     } else if (e.target.matches(".delete-btn")) {
-        Book.removeBook(e.target.closest(".card"));
+        Book.promptRemoval(e.target.closest(".card"));
     } else {
-        console.log(dropdowns);
-        dropdowns.forEach((dropdown) => {
-            console.log(dropdown.classList);
-            dropdown.classList.remove("active");
+        console.log("hello");
+        dropdowns.forEach((element) => {
+            element.classList.remove("active");
         })
     }
 });
@@ -121,8 +130,11 @@ submitBook.addEventListener('click', (e) => {
 confirm.addEventListener('click', (e) => {
     e.preventDefault();
 
-    removeBook()
+    Book.removeBook();
+    Book.clearDeletionQueue();
+    deletionConfirmationDialog.close();
 })
 cancel.addEventListener('click', (e) => {
+    Book.clearDeletionQueue();
     deletionConfirmationDialog.close();
 })
